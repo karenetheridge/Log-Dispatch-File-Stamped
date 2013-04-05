@@ -1,4 +1,5 @@
 use strict;
+use warnings;
 package Log::Dispatch::File::Stamped;
 
 use File::Basename        qw(fileparse);

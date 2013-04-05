@@ -3,6 +3,7 @@
 #$Id: log_to.t,v 1.1 2004-09-15 11:55:26 eric Exp $
 
 use strict;
+use warnings;
 use File::Spec::Functions qw(catfile);
 use FindBin               qw($Bin);
 use Test::More tests => 12;
