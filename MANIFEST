@@ -1,0 +1,11 @@
+Build.PL
+Changes
+lib/Log/Dispatch/File/Stamped.pm
+Makefile.PL
+MANIFEST
+META.yml
+README
+t/basic.t
+t/binmode.t
+t/log_to.t
+t/perms.t
