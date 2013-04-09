@@ -181,5 +181,8 @@ Perl README file.
 Dave Rolsky, author of the Log::Dispatch suite and many other
 fine modules on CPAN.
 
+This module was rewritten to respect all present (and future) options to
+L<Log::Dispatch::File> by Karen Etheridge, <ether@cpan.org>.
+
 =cut
 
