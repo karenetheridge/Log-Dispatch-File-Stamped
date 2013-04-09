@@ -7,77 +7,73 @@ use File::Spec::Functions qw(catfile);
 use POSIX                 qw(strftime);
 
 use vars qw(@ISA $VERSION);
-use Log::Dispatch::File;
+use Log::Dispatch::File;        # XXX TODO depend on new release
 @ISA = qw(Log::Dispatch::File);
 
 $VERSION = '0.10_001';
 
-sub new
+use Params::Validate qw(validate SCALAR);
+Params::Validate::validation_options( allow_extra => 1 );
+
+
+sub _basic_init
 {
-    my $proto = shift;
-    my $class = ref $proto || $proto;
+    my $self = shift;
 
-    my %params = @_;
-    my $self = bless {}, $class;
+    $self->SUPER::_basic_init(@_);
 
-    # stamp format
-    $self->{stamp_fmt} = delete $params{stamp_fmt} || '%Y%m%d';
+    my %p = validate(
+        @_,
+        {
+            stamp_fmt => {
+                type => SCALAR,
+                default => '%Y%m%d',
+            },
+        },
+    );
 
-    # binmode, permissions
-    $self->{$_} = delete $params{$_}
-        for qw(binmode permissions);
+    $self->{stamp_fmt} = $p{stamp_fmt};
 
-    # only append mode is supported
-    $params{mode} = 'append';
-
-    # base class initialization
-    $self->_basic_init(%params);
+    # cache of last timestamp used
+    $self->{_stamp} = '';
 
     # split pathname into path, basename, extension
-    @$self{qw(_name _path _ext)} = fileparse($params{filename}, '\.[^.]+');
+    @$self{qw(_name _path _ext)} = fileparse($self->{filename}, '\.[^.]+');
 
-    return $self;
+    # stored in $self->{filename} (overwrites original); used by _open_file()
+    $self->_make_filename;
 }
+
+sub _make_filename
+{
+    my $self = shift;
+
+    my $stamp = strftime($self->{stamp_fmt}, localtime);
+
+    # re-use last filename if the stamp has not changed
+    return $self->{filename} if $stamp eq $self->{_stamp};
+
+    # build the stamped file name
+    my $filename = join '-', $self->{_name}, $stamp;
+    $filename .= $self->{_ext} if $self->{_ext};
+    $self->{filename} = catfile($self->{_path}, $filename);
+}
+
 sub log_message
 {
     my $self = shift;
-    # might need to open a new file
-    $self->_make_handle();
-    # let the base class do the logging
-    $self->SUPER::log_message(@_);
-}
-sub _make_stamp
-{
-    my $self = shift;
-    # make stamp string from current date and time
-    return strftime($self->{stamp_fmt}, localtime);
-}
-sub _make_handle
-{
-    my $self = shift;
 
-    # make stamp string from current date and time
-    my $stamp = $self->_make_stamp();
+    # check if the filename is the same as last time...
+    my $old_filename = $self->{filename};
+    $self->_make_filename;
 
-    # if the stamp string has changed, need to open a new logfile
-    if (!$self->{stamp} || $stamp ne $self->{stamp}) {
-        # build the stamped file name
-        my $filename = join '-', $self->{_name}, $stamp;
-        $filename .= $self->{_ext} if $self->{_ext};
-        $filename  = catfile($self->{_path}, $filename);
-        # close previous open logfile
-        close $self->{fh} if $self->{fh};
-        # open new logfile
-        my %params = (
-            filename => $filename,
-            mode     => 'append',
-        );
-        for my $p (qw(binmode permissions)) {
-            $params{$p} = $self->{$p}
-                if $self->{$p};
-        }
-        $self->SUPER::_make_handle(%params);
+    # don't re-open if we use close-after-write - the superclass will do it
+    if (not $self->{close} and $old_filename ne $self->{filename})
+    {
+        $self->_open_file;
     }
+
+    $self->SUPER::log_message(@_);
 }
 
 1;
@@ -103,7 +99,7 @@ Log::Dispatch::File::Stamped - Logging to date/time stamped files
 =head1 DESCRIPTION
 
 This module subclasses Log::Dispatch::File for logging to date/time
-stamped files.
+stamped files, respecting all its configuration options.
 
 =head1 METHODS
 
@@ -126,18 +122,10 @@ timestamp is inserted before the extension. See examples below.
 
 The format of the timestamp string. This module uses POSIX::strftime to
 create the timestamp string from the current local date and time.
-Refer to your platform's strftime documentation for the list of allowed
+Refer to your platform's C<strftime> documentation for the list of allowed
 tokens.
 
 Defaults to '%Y%m%d'.
-
-=item -- binmode ($)
-
-A layer name to be passed to binmode, like ":utf8" or ":raw".
-
-=item -- mode ($)
-
-This parameter is ignored, and is forced to 'append'.
 
 =back
 
