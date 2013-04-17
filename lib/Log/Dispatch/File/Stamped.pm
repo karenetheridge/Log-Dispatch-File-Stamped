@@ -7,7 +7,7 @@ use File::Spec::Functions qw(catfile);
 use POSIX                 qw(strftime);
 
 use vars qw(@ISA $VERSION);
-use Log::Dispatch::File;        # XXX TODO depend on new release
+use Log::Dispatch::File 2.38;
 @ISA = qw(Log::Dispatch::File);
 
 $VERSION = '0.10_001';
