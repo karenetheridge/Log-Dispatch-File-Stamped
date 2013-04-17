@@ -9,9 +9,9 @@ WriteMakefile(
     ABSTRACT_FROM => 'lib/Log/Dispatch/File/Stamped.pm',
     PL_FILES      => {},
     PREREQ_PM     => {
-                      Log::Dispatch       => 0,
-                      Log::Dispatch::File => 0,
-                      Test::More          => 0,
+                      'Log::Dispatch'       => 0,
+                      'Log::Dispatch::File' => 0,
+                      'Test::More'          => 0,
                     },
     dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean         => { FILES => 'Log-Dispatch-File-Stamped-*' },
