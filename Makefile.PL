@@ -11,7 +11,7 @@ WriteMakefile(
     PREREQ_PM     => {
                       'Log::Dispatch'       => 0,
                       'Log::Dispatch::File' => 0,
-                      'Test::More'          => 0,
+                      'Test::More'          => '0.88',
                     },
     dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean         => { FILES => 'Log-Dispatch-File-Stamped-*' },
