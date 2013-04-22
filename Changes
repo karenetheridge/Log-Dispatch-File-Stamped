@@ -2,6 +2,9 @@
 Revision history for Perl extension Log::Dispatch::File::Stamped.
 =================================================================
 
+0.10_003  2013-04-22
+                - fix version declaration (Karen Etheridge)
+
 0.10_002  2013-04-22
                 - fix version requirements (Karen Etheridge)
 
