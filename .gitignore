@@ -18,3 +18,5 @@ nytprof*
 /inc/
 *.sw?
 /Log-Dispatch-File-Stamped-*
+/Build
+/_build
