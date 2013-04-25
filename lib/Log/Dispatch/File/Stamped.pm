@@ -10,7 +10,7 @@ use vars qw(@ISA $VERSION);
 use Log::Dispatch::File 2.38;
 @ISA = qw(Log::Dispatch::File);
 
-$VERSION = '0.10_004';      # for PAUSE
+$VERSION = '0.10_005';      # for PAUSE
 $VERSION = eval $VERSION;   # the real version (a string literal)
 
 use Params::Validate qw(validate SCALAR);
