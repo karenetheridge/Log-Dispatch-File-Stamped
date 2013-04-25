@@ -12,6 +12,7 @@ my $builder = Module::Build->new(
         'Log::Dispatch'       => 0,
         'Log::Dispatch::File' => 2.38,
         'Test::TempDir'       => 0,
+        'Path::Tiny'          => 0,
     },
     add_to_cleanup      => [ 'Log-Dispatch-File-Stamped-*' ],
 );

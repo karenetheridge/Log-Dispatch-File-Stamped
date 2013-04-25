@@ -13,6 +13,7 @@ WriteMakefile(
                       'Log::Dispatch::File' => '2.38',
                       'Test::More'          => '0.88',
                       'Test::TempDir'       => 0,
+                      'Path::Tiny'          => 0,
                     },
     dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean         => { FILES => 'Log-Dispatch-File-Stamped-*' },

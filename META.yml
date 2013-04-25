@@ -18,6 +18,7 @@ requires:
   Log::Dispatch::File: 2.38
   Test::More: 0.88
   Test::TempDir: 0
+  Path::Tiny: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.10_004
+version: 0.10_005
