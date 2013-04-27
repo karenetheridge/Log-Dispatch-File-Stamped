@@ -50,10 +50,16 @@ my $dir = temp_root;
 
     note "the simulated time is: ", POSIX::strftime('%Y%m%d-%T', localtime), "\n";
 
-    is($logger->output('no_caw')->{filename}, path($dir, 'no_caw-20130101.log')->stringify,
-        'properly calculated initial filename (no CAW)');
-    is($logger->output('caw')->{filename}, path($dir, 'caw-20130101.log')->stringify,
-        'properly calculated initial filename (CAW)');
+    is(
+        path($logger->output('no_caw')->{filename})->stringify,
+        path($dir, 'no_caw-20130101.log')->stringify,
+        'properly calculated initial filename (no CAW)',
+    );
+    is(
+        path($logger->output('caw')->{filename})->stringify,
+        path($dir, 'caw-20130101.log')->stringify,
+        'properly calculated initial filename (CAW)',
+    );
 
     ok($logger->output('no_caw')->{fh}, 'no_caw output has created a fh before first write');
     ok(!$logger->output('caw')->{fh}, 'caw output has not created a fh before first write');
@@ -89,10 +95,16 @@ my $dir = temp_root;
     # write another message
     $logger->log(level => 'info', message => 'third message');
 
-    is($logger->output('no_caw')->{filename}, path($dir, 'no_caw-20130102.log')->stringify,
-        'properly calculated new filename (no CAW)');
-    is($logger->output('caw')->{filename}, path($dir, 'caw-20130102.log')->stringify,
-        'properly calculated new filename (CAW)');
+    is(
+        path($logger->output('no_caw')->{filename})->stringify,
+        path($dir, 'no_caw-20130102.log')->stringify,
+        'properly calculated new filename (no CAW)',
+    );
+    is(
+        path($logger->output('caw')->{filename})->stringify,
+        path($dir, 'caw-20130102.log')->stringify,
+        'properly calculated new filename (CAW)',
+    );
 
     is(path($logger->output('no_caw')->{filename})->slurp, "third message\n", 'third line from no_caw output');
     is(path($logger->output('caw')->{filename})->slurp, "third message\n", 'third line from caw output');
