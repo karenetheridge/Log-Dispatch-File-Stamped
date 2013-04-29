@@ -19,7 +19,7 @@ my $dir = temp_root;
             binmode => ':utf8',
             autoflush => 0,
             close_after_write => 1,
-            permissions => '0777',
+            permissions => 0777,
             syswrite => 1,
         ] ],
     );
@@ -35,7 +35,7 @@ my $dir = temp_root;
             binmode => ':utf8',
             autoflush => 0,
             close => 1,
-            permissions => '0777',
+            permissions => 0777,
             syswrite => 1,
             mode => '>>',
         })),
