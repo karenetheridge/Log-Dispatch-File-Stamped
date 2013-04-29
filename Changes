@@ -2,6 +2,9 @@
 Revision history for Perl extension Log::Dispatch::File::Stamped.
 =================================================================
 
+0.10_007  2013-04-29
+                - fix testing of octal values on MSWin32
+
 0.10_003  2013-04-22
                 - fix version declaration (Karen Etheridge)
 
