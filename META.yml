@@ -12,7 +12,7 @@ name: Log-Dispatch-File-Stamped
 provides:
   Log::Dispatch::File::Stamped:
     file: lib/Log/Dispatch/File/Stamped.pm
-    version: 0.10_007
+    version: 0.10_008
 requires:
   Log::Dispatch: 0
   Log::Dispatch::File: 2.38
@@ -21,4 +21,4 @@ requires:
   Path::Tiny: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.10_007
+version: 0.10_008
