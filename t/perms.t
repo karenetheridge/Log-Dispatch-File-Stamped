@@ -31,7 +31,7 @@ $dispatcher->log( level => 'info', message => 'foo' );
 ok(-e $file);
 
 my $perm =  (stat($file))[2] & 07777;
-is ($perm, oct('0600'), 'permissions are correct');
+is(sprintf('%o', $perm), '600', 'permissions are correct');
 
 END {
     unlink $file;
