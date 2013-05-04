@@ -30,8 +30,14 @@ $dispatcher->add($stamped);
 $dispatcher->log( level => 'info', message => 'foo' );
 ok(-e $file);
 
-my $perm =  (stat($file))[2] & 07777;
-is(sprintf('%o', $perm), '600', 'permissions are correct');
+SKIP: {
+    skip("different file permission semantics on $^O", 1)
+        if $^O eq 'amigaos' || $^O eq 'os2' || $^O eq 'NetWare'
+            || $^O eq 'MSWin32' || $^O eq 'dos'
+            || $^O eq 'cygwin' || $^O eq 'MacOS';
+
+    is((stat($file))[2] & 07777, 0600, 'permissions are correct');
+}
 
 END {
     unlink $file;
