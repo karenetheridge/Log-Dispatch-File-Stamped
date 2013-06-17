@@ -1,17 +1,14 @@
 use strict;
 use warnings;
 package Log::Dispatch::File::Stamped;
+# ABSTRACT: Logging to date/time stamped files
 
 use File::Basename        qw(fileparse);
 use File::Spec::Functions qw(catfile);
 use POSIX                 qw(strftime);
 
-use vars qw(@ISA $VERSION);
 use Log::Dispatch::File 2.38;
-@ISA = qw(Log::Dispatch::File);
-
-$VERSION = '0.11';      # for PAUSE
-$VERSION = eval $VERSION;   # the real version (a string literal)
+use parent 'Log::Dispatch::File';
 
 use Params::Validate qw(validate SCALAR);
 Params::Validate::validation_options( allow_extra => 1 );
@@ -81,10 +78,7 @@ sub log_message
 
 1;
 __END__
-
-=head1 NAME
-
-Log::Dispatch::File::Stamped - Logging to date/time stamped files
+=pod
 
 =head1 SYNOPSIS
 
@@ -142,6 +136,8 @@ shouldn't be called directly but should be called through the
 
 =head1 EXAMPLES
 
+=for stopwords txt
+
 Assuming the current date and time is:
 
   % perl -e 'print scalar localtime'
@@ -168,18 +164,9 @@ This will log to file 'logfile-0813.txt'.
 
 L<Log::Dispatch::File>, L<POSIX>.
 
-=head1 AUTHOR
-
-Eric Cholet <cholet@logilune.com>
-
-=head1 COPYRIGHT
-
-The Log::Dispatch::File::Stamped is free software. You may
-distribute it under the terms of either the GNU General
-Public License or the Artistic License, as specified in the
-Perl README file.
-
 =head1 ACKNOWLEDGEMENTS
+
+=for stopwords Rolsky
 
 Dave Rolsky, author of the Log::Dispatch suite and many other
 fine modules on CPAN.
@@ -188,4 +175,3 @@ This module was rewritten to respect all present (and future) options to
 L<Log::Dispatch::File> by Karen Etheridge, <ether@cpan.org>.
 
 =cut
-

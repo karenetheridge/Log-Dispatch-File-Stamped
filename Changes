@@ -1,6 +1,7 @@
-=================================================================
-Revision history for Perl extension Log::Dispatch::File::Stamped.
-=================================================================
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
+          - conversion to Dist::Zilla
 
 0.11  2013-06-17
           - re-release as a stable release
