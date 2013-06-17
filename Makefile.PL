@@ -1,6 +1,6 @@
 # $Id: Makefile.PL,v 1.3 2006-09-07 08:40:27 eric Exp $
 
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.30;
 
 WriteMakefile(
     NAME          => 'Log::Dispatch::File::Stamped',
