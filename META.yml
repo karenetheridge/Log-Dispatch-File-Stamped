@@ -2,6 +2,7 @@
 abstract: 'Logging to date/time stamped files'
 author:
   - 'Eric Cholet <cholet@logilune.com>'
+  - 'Karen Etheridge <ether@cpan.org'
 configure_requires:
   Module::Build: 0.36
 license: perl
@@ -22,3 +23,6 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
 version: 0.10_010
+x_contributors:
+  - 'Eric Cholet <cholet@logilune.com>'
+  - 'Karen Etheridge <ether@cpan.org'

@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME          => 'Log::Dispatch::File::Stamped',
-    AUTHOR        => 'Eric Cholet <cholet@logilune.com>',
+    AUTHOR        => 'Eric Cholet <cholet@logilune.com>, Karen Etheridge <ether@cpan.org>',
     VERSION_FROM  => 'lib/Log/Dispatch/File/Stamped.pm',
     ABSTRACT_FROM => 'lib/Log/Dispatch/File/Stamped.pm',
     PL_FILES      => {},
