@@ -16,6 +16,8 @@ $VERSION = eval $VERSION;   # the real version (a string literal)
 use Params::Validate qw(validate SCALAR);
 Params::Validate::validation_options( allow_extra => 1 );
 
+use namespace::clean;
+
 
 sub _basic_init
 {
