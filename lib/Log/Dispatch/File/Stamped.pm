@@ -84,7 +84,7 @@ __END__
 
 =head1 NAME
 
-Log::Dispatch::File::Stamped - Logging to date/time stamped files (UNAUTHORIZED RELEASE)
+Log::Dispatch::File::Stamped - Logging to date/time stamped files
 
 =head1 SYNOPSIS
 
