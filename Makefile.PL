@@ -17,4 +17,14 @@ WriteMakefile(
                     },
     dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean         => { FILES => 'Log-Dispatch-File-Stamped-*' },
+
+    META_MERGE => {
+        dynamic_config => 0,
+
+        resources => {
+            bugtracker => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-File-Stamped',
+            repository => 'https://github.com/karenetheridge/Log-Dispatch-File-Stamped.git',
+            homepage => 'https://github.com/karenetheridge/Log-Dispatch-File-Stamped',
+        },
+    },
 );
