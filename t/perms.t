@@ -39,4 +39,3 @@ SKIP: {
 END {
     unlink $file;
 };
-__END__

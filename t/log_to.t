@@ -44,4 +44,3 @@ for my $t (@tests) {
 END {
     unlink @files if @files;
 };
-__END__

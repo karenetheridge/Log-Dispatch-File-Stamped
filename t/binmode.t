@@ -49,4 +49,3 @@ SKIP:
 END {
     unlink @files if @files;
 };
-__END__
