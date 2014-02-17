@@ -7,7 +7,7 @@ use Test::Deep;
 use Path::Tiny;
 use Log::Dispatch;
 
-my $dir = temp_root;
+my $dir = Path::Tiny->tempdir;
 
 {
     my $logger = Log::Dispatch->new(

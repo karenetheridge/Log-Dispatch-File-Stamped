@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+         - uses of Test::TempDir switched to Path::Tiny
 
 0.12     2013-06-17 21:57:03Z
          - conversion to Dist::Zilla

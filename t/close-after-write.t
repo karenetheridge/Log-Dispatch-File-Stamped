@@ -11,11 +11,10 @@ BEGIN {
 }
 
 use Test::More 0.88;
-use Test::TempDir;
 use Path::Tiny;
 use Log::Dispatch;
 
-my $dir = temp_root;
+my $dir = Path::Tiny->tempdir;
 
 # test that the same handle is returned if close-on-write is not set and the
 # stamp hasn't changed.
