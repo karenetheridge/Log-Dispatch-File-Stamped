@@ -4,7 +4,7 @@ Log::Dispatch::File::Stamped - Logging to date/time stamped files
 
 # VERSION
 
-version 0.12
+version 0.13
 
 # SYNOPSIS
 
@@ -21,36 +21,36 @@ version 0.12
 
 # DESCRIPTION
 
-This module subclasses Log::Dispatch::File for logging to date/time
+This module subclasses [Log::Dispatch::File](https://metacpan.org/pod/Log::Dispatch::File) for logging to date/time
 stamped files, respecting all its configuration options.
 
 # METHODS
 
-- new(%p)
+## new(%p)
 
-    This method takes the same set of parameters as Log::Dispatch::File::new(),
-    with the following differences:
+This method takes the same set of parameters as [Log::Dispatch::File::new()](https://metacpan.org/pod/Log::Dispatch::File#new),
+with the following differences:
 
-    - \-- filename ($)
+- filename ($)
 
-        The filename template. The actual timestamp will be appended to this filename
-        when creating the actual logfile. If the filename has an extension, the
-        timestamp is inserted before the extension. See examples below.
+    The filename template. The actual timestamp will be appended to this filename
+    when creating the actual logfile. If the filename has an extension, the
+    timestamp is inserted before the extension. See examples below.
 
-    - \-- stamp\_fmt ($)
+- stamp\_fmt ($)
 
-        The format of the timestamp string. This module uses POSIX::strftime to
-        create the timestamp string from the current local date and time.
-        Refer to your platform's `strftime` documentation for the list of allowed
-        tokens.
+    The format of the timestamp string. This module uses [POSIX::strftime](https://metacpan.org/pod/POSIX#strftime) to
+    create the timestamp string from the current local date and time.
+    Refer to your platform's `strftime` documentation for the list of allowed
+    tokens.
 
-        Defaults to '%Y%m%d'.
+    Defaults to `%Y%m%d`.
 
-- log\_message( message => $ )
+## log\_message( message => $ )
 
-    Sends a message to the appropriate output.  Generally this
-    shouldn't be called directly but should be called through the
-    "log()" method (in Log::Dispatch::Output).
+Sends a message to the appropriate output.  Generally this
+shouldn't be called directly but should be called through the
+`log()` method (in [Log::Dispatch::Output](https://metacpan.org/pod/Log::Dispatch::Output)).
 
 # EXAMPLES
 
@@ -65,7 +65,7 @@ Assuming the current date and time is:
       filename  => 'logfile.txt',
     );
 
-This will log to file 'logfile-20030208.txt'.
+This will log to file `logfile-20030208.txt`.
 
     Log::Dispatch::File::Stamped->new(
       name      => 'file',
@@ -74,11 +74,11 @@ This will log to file 'logfile-20030208.txt'.
       stamp_fmt => '%d%H',
     );
 
-This will log to file 'logfile-0813.txt'.
+This will log to file `logfile-0813.txt`.
 
 # SEE ALSO
 
-[Log::Dispatch::File](http://search.cpan.org/perldoc?Log::Dispatch::File), [POSIX](http://search.cpan.org/perldoc?POSIX).
+[Log::Dispatch::File](https://metacpan.org/pod/Log::Dispatch::File), [POSIX](https://metacpan.org/pod/POSIX).
 
 # ACKNOWLEDGEMENTS
 
@@ -86,7 +86,7 @@ Dave Rolsky, author of the Log::Dispatch suite and many other
 fine modules on CPAN.
 
 This module was rewritten to respect all present (and future) options to
-[Log::Dispatch::File](http://search.cpan.org/perldoc?Log::Dispatch::File) by Karen Etheridge, <ether@cpan.org>.
+[Log::Dispatch::File](https://metacpan.org/pod/Log::Dispatch::File) by Karen Etheridge, <ether@cpan.org>.
 
 # AUTHORS
 
@@ -95,7 +95,7 @@ This module was rewritten to respect all present (and future) options to
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Karen Etheridge.
+This software is copyright (c) 2003 by Karen Etheridge.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
