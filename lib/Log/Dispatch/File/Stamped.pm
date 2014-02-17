@@ -78,6 +78,7 @@ sub log_message
 
 1;
 __END__
+
 =pod
 
 =head1 SYNOPSIS
@@ -95,44 +96,40 @@ __END__
 
 =head1 DESCRIPTION
 
-This module subclasses Log::Dispatch::File for logging to date/time
+This module subclasses L<Log::Dispatch::File> for logging to date/time
 stamped files, respecting all its configuration options.
 
 =head1 METHODS
 
-=over 4
+=head2 new(%p)
 
-=item new(%p)
-
-This method takes the same set of parameters as Log::Dispatch::File::new(),
+This method takes the same set of parameters as L<Log::Dispatch::File::new()|Log::Dispatch::File/new>,
 with the following differences:
 
 =over 4
 
-=item -- filename ($)
+=item * filename ($)
 
 The filename template. The actual timestamp will be appended to this filename
 when creating the actual logfile. If the filename has an extension, the
 timestamp is inserted before the extension. See examples below.
 
-=item -- stamp_fmt ($)
+=item * stamp_fmt ($)
 
-The format of the timestamp string. This module uses POSIX::strftime to
+The format of the timestamp string. This module uses L<POSIX::strftime|POSIX/strftime> to
 create the timestamp string from the current local date and time.
 Refer to your platform's C<strftime> documentation for the list of allowed
 tokens.
 
-Defaults to '%Y%m%d'.
+Defaults to C<%Y%m%d>.
 
 =back
 
-=item log_message( message => $ )
+=head2 log_message( message => $ )
 
 Sends a message to the appropriate output.  Generally this
 shouldn't be called directly but should be called through the
-"log()" method (in Log::Dispatch::Output).
-
-=back
+C<log()> method (in L<Log::Dispatch::Output>).
 
 =head1 EXAMPLES
 
@@ -149,7 +146,7 @@ Assuming the current date and time is:
     filename  => 'logfile.txt',
   );
 
-This will log to file 'logfile-20030208.txt'.
+This will log to file F<logfile-20030208.txt>.
 
   Log::Dispatch::File::Stamped->new(
     name      => 'file',
@@ -158,7 +155,7 @@ This will log to file 'logfile-20030208.txt'.
     stamp_fmt => '%d%H',
   );
 
-This will log to file 'logfile-0813.txt'.
+This will log to file F<logfile-0813.txt>.
 
 =head1 SEE ALSO
 
