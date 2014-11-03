@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+         - fix lingering Test::TempDir prereq
 
 0.13      2014-02-17 01:14:47Z
          - uses of Test::TempDir switched to Path::Tiny
