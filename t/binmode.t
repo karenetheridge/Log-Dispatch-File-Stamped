@@ -11,7 +11,7 @@ my %params = (
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];
 my @tests = (
   { expected => sprintf("logfile-%04d%02d%02d.txt", $year+1900, $mon+1, $mday),
-    params   => {%params, 'binmode' => ':utf8'},
+    params   => {%params, 'binmode' => ':encoding(UTF-8)'},
     message  => "foo bar\x{20AC}",
     expected_message => "foo bar\xe2\x82\xac",
   },
