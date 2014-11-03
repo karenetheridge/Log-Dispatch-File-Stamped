@@ -2,6 +2,7 @@ use strict;
 use warnings;
 package Log::Dispatch::File::Stamped;
 # ABSTRACT: Logging to date/time stamped files
+# KEYWORDS: log logging output file timestamp date rolling rotate
 
 use File::Basename        qw(fileparse);
 use File::Spec::Functions qw(catfile);
