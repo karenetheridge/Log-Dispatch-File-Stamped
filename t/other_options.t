@@ -6,7 +6,7 @@ use Test::Deep;
 use Path::Tiny;
 use Log::Dispatch;
 
-my $dir = Path::Tiny->tempdir;
+my $tempdir = Path::Tiny->tempdir;
 
 {
     my $logger = Log::Dispatch->new(
@@ -14,7 +14,7 @@ my $dir = Path::Tiny->tempdir;
             'File::Stamped',
             name => 'foo',
             min_level => 'debug',
-            filename => path($dir, 'foo.log')->stringify,
+            filename => $tempdir->child('foo.log')->stringify,
             binmode => ':encoding(UTF-8)',
             autoflush => 0,
             close_after_write => 1,

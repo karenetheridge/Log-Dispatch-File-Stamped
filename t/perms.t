@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-use File::Spec::Functions qw(catfile);
-use Test::More;
 
+use Test::More;
+use Path::Tiny;
 plan tests => 6;
 
 use_ok('Log::Dispatch');
@@ -11,14 +11,15 @@ use_ok('Log::Dispatch::File::Stamped');
 my $dispatcher = Log::Dispatch->new;
 ok($dispatcher);
 
+my $tempdir = Path::Tiny->tempdir;
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];
-my $file = catfile('t', sprintf("logfile-%04d%02d%02d.txt", $year+1900, $mon+1, $mday));
+my $file = $tempdir->child(sprintf("logfile-%04d%02d%02d.txt", $year+1900, $mon+1, $mday));
 
 my %params = (
     name        => 'file',
     min_level   => 'debug',
     permissions => 0600,
-    filename  => catfile('t', 'logfile.txt'),
+    filename  => $tempdir->child('logfile.txt')->stringify,
 );
 my $stamped = Log::Dispatch::File::Stamped->new(%params);
 ok($stamped);
@@ -35,7 +36,3 @@ SKIP: {
 
     is((stat($file))[2] & 07777, 0600, 'permissions are correct');
 }
-
-END {
-    unlink $file;
-};

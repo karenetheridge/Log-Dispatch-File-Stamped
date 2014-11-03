@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
           - fix lingering Test::TempDir prereq
+          - fix remaining issues with running tests in parallel by using
+            unique tempdirs for all tests
 
 0.13      2014-02-17 01:14:47Z
           - uses of Test::TempDir switched to Path::Tiny

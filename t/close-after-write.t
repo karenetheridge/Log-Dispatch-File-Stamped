@@ -14,7 +14,7 @@ use Test::More 0.88;
 use Path::Tiny;
 use Log::Dispatch;
 
-my $dir = Path::Tiny->tempdir;
+my $tempdir = Path::Tiny->tempdir;
 
 # test that the same handle is returned if close-on-write is not set and the
 # stamp hasn't changed.
@@ -33,7 +33,7 @@ my $dir = Path::Tiny->tempdir;
                 min_level => 'debug',
                 newline => 1,
                 name => 'no_caw',
-                filename => path($dir, 'no_caw.log')->stringify,
+                filename => $tempdir->child('no_caw.log')->stringify,
                 close_after_write => 0,
             ],
             [
@@ -41,7 +41,7 @@ my $dir = Path::Tiny->tempdir;
                 min_level => 'debug',
                 newline => 1,
                 name => 'caw',
-                filename => path($dir, 'caw.log')->stringify,
+                filename => $tempdir->child('caw.log')->stringify,
                 close_after_write => 1,
             ],
         ],
@@ -50,13 +50,13 @@ my $dir = Path::Tiny->tempdir;
     note "the simulated time is: ", POSIX::strftime('%Y%m%d-%T', localtime), "\n";
 
     is(
-        path($logger->output('no_caw')->{filename})->stringify,
-        path($dir, 'no_caw-20130101.log')->stringify,
+        $logger->output('no_caw')->{filename},
+        $tempdir->child('no_caw-20130101.log')->stringify,
         'properly calculated initial filename (no CAW)',
     );
     is(
-        path($logger->output('caw')->{filename})->stringify,
-        path($dir, 'caw-20130101.log')->stringify,
+        $logger->output('caw')->{filename},
+        $tempdir->child('caw-20130101.log')->stringify,
         'properly calculated initial filename (CAW)',
     );
 
@@ -95,13 +95,13 @@ my $dir = Path::Tiny->tempdir;
     $logger->log(level => 'info', message => 'third message');
 
     is(
-        path($logger->output('no_caw')->{filename})->stringify,
-        path($dir, 'no_caw-20130102.log')->stringify,
+        $logger->output('no_caw')->{filename},
+        $tempdir->child('no_caw-20130102.log')->stringify,
         'properly calculated new filename (no CAW)',
     );
     is(
-        path($logger->output('caw')->{filename})->stringify,
-        path($dir, 'caw-20130102.log')->stringify,
+        $logger->output('caw')->{filename},
+        $tempdir->child('caw-20130102.log')->stringify,
         'properly calculated new filename (CAW)',
     );
 
@@ -113,4 +113,3 @@ my $dir = Path::Tiny->tempdir;
 }
 
 done_testing;
-
