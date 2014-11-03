@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.14      2014-11-03 06:14:34Z
           - fix lingering Test::TempDir prereq
           - fix remaining issues with running tests in parallel by using
             unique tempdirs for all tests
