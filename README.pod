@@ -8,7 +8,7 @@ Log::Dispatch::File::Stamped - Logging to date/time stamped files
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.15      2014-11-05 02:28:41Z
           - fix tests on MSWin32 using arch-sensitive file separators
 
 0.14      2014-11-03 06:14:34Z
