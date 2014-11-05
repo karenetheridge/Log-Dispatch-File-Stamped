@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - fix tests on MSWin32 using arch-sensitive file separators
 
 0.14      2014-11-03 06:14:34Z
           - fix lingering Test::TempDir prereq

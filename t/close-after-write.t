@@ -12,6 +12,7 @@ BEGIN {
 
 use Test::More 0.88;
 use Path::Tiny;
+use File::Spec::Functions qw(catfile splitdir);
 use Log::Dispatch;
 
 my $tempdir = Path::Tiny->tempdir;
@@ -51,12 +52,12 @@ my $tempdir = Path::Tiny->tempdir;
 
     is(
         $logger->output('no_caw')->{filename},
-        $tempdir->child('no_caw-20130101.log')->stringify,
+        catfile(splitdir($tempdir->child('no_caw-20130101.log')->stringify)),
         'properly calculated initial filename (no CAW)',
     );
     is(
         $logger->output('caw')->{filename},
-        $tempdir->child('caw-20130101.log')->stringify,
+        catfile(splitdir($tempdir->child('caw-20130101.log')->stringify)),
         'properly calculated initial filename (CAW)',
     );
 
@@ -96,12 +97,12 @@ my $tempdir = Path::Tiny->tempdir;
 
     is(
         $logger->output('no_caw')->{filename},
-        $tempdir->child('no_caw-20130102.log')->stringify,
+        catfile(splitdir($tempdir->child('no_caw-20130102.log')->stringify)),
         'properly calculated new filename (no CAW)',
     );
     is(
         $logger->output('caw')->{filename},
-        $tempdir->child('caw-20130102.log')->stringify,
+        catfile(splitdir($tempdir->child('caw-20130102.log')->stringify)),
         'properly calculated new filename (CAW)',
     );
 
