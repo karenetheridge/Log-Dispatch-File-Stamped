@@ -3,6 +3,7 @@ use warnings;
 package Log::Dispatch::File::Stamped;
 # ABSTRACT: Logging to date/time stamped files
 # KEYWORDS: log logging output file timestamp date rolling rotate
+# vim: set ts=8 sts=4 sw=4 tw=78 et :
 
 our $VERSION = '0.16';
 
