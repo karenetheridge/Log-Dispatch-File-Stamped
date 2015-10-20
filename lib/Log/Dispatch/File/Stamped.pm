@@ -162,7 +162,12 @@ This will log to file F<logfile-0813.txt>.
 
 =head1 SEE ALSO
 
-L<Log::Dispatch::File>, L<POSIX>.
+=for :list
+* L<Log::Dispatch::File>
+* L<POSIX>
+* L<Log::Dispatch::File::Rolling>
+* L<Log::Dispatch::FileRotate>
+* L<Log::Dispatch::FileWriteRotate>
 
 =head1 ACKNOWLEDGEMENTS
 
