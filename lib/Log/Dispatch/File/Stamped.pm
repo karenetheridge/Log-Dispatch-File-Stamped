@@ -17,8 +17,7 @@ use parent 'Log::Dispatch::File';
 use Params::Validate qw(validate SCALAR);
 Params::Validate::validation_options( allow_extra => 1 );
 
-use namespace::clean;
-
+use namespace::clean 0.19;
 
 sub _basic_init
 {
