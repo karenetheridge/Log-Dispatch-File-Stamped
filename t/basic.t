@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More;
+use Test::More 0.88;
 use Path::Tiny;
 
 use_ok('Log::Dispatch');
