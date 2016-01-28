@@ -1,6 +1,9 @@
 Revision history for Log-Dispatch-File-Stamped
 
 {{$NEXT}}
+          - fix close-after-write tests that broke with Log::Dispatch::File
+            2.53, which now deletes the stored filehandle after closing
+            (RT#111292)
 
 0.15      2014-11-05 02:28:41Z
           - fix tests on MSWin32 using arch-sensitive file separators

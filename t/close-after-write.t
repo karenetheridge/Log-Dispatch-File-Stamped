@@ -82,7 +82,7 @@ my $tempdir = Path::Tiny->tempdir;
 
     # check the filehandles again...
     is($logger->output('no_caw')->{fh}, $handle{no_caw}, 'handle has not changed when not using CAW');
-    isnt($logger->output('caw')->{fh}, $handle{caw}, 'handle has changed when using CAW');
+    fhs_differ($logger->output('caw')->{fh}, $handle{caw}, 'handle has changed when using CAW');
 
     $handle{caw_2} = $logger->output('caw')->{fh};
 
@@ -110,7 +110,21 @@ my $tempdir = Path::Tiny->tempdir;
     is(path($logger->output('caw')->{filename})->slurp, "third message\n", 'third line from caw output');
 
     isnt($logger->output('no_caw')->{fh}, $handle{no_caw}, 'handle has changed when not using CAW, for new day');
-    isnt($logger->output('caw')->{fh}, $handle{caw_2}, 'handle has changed when using CAW, for new day');
+    fhs_differ($logger->output('caw')->{fh}, $handle{caw_2}, 'handle has changed when using CAW, for new day');
+}
+
+sub fhs_differ
+{
+    my ($fh1, $fh2, $test_name) = @_;
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    ok(
+        ((defined $fh1 and defined $fh2 and $fh1 != $fh2) or (not defined $fh1 and not defined $fh2)),
+        $test_name,
+    )
+    or do {
+        no warnings 'uninitialized';
+        diag "original fh was $fh1; new fh is $fh2";
+    };
 }
 
 done_testing;
