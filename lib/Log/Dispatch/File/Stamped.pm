@@ -5,7 +5,7 @@ package Log::Dispatch::File::Stamped;
 # KEYWORDS: log logging output file timestamp date rolling rotate
 # vim: set ts=8 sts=4 sw=4 tw=115 et :
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 use File::Basename        qw(fileparse);
 use File::Spec::Functions qw(catfile);
