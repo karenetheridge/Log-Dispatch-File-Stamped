@@ -8,7 +8,7 @@ Log::Dispatch::File::Stamped - Logging to date/time stamped files
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
@@ -88,7 +88,29 @@ This will log to file F<logfile-0813.txt>.
 
 =head1 SEE ALSO
 
-L<Log::Dispatch::File>, L<POSIX>.
+=over 4
+
+=item *
+
+L<Log::Dispatch::File>
+
+=item *
+
+L<POSIX>
+
+=item *
+
+L<Log::Dispatch::File::Rolling>
+
+=item *
+
+L<Log::Dispatch::FileRotate>
+
+=item *
+
+L<Log::Dispatch::FileWriteRotate>
+
+=back
 
 =head1 ACKNOWLEDGEMENTS
 
@@ -99,6 +121,11 @@ fine modules on CPAN.
 
 This module was rewritten to respect all present (and future) options to
 L<Log::Dispatch::File> by Karen Etheridge, <ether@cpan.org>.
+
+=head1 SUPPORT
+
+Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-File-Stamped>
+(or L<bug-Log-Dispatch-File-Stamped@rt.cpan.org|mailto:bug-Log-Dispatch-File-Stamped@rt.cpan.org>).
 
 =head1 AUTHORS
 
@@ -114,9 +141,9 @@ Karen Etheridge <ether@cpan.org>
 
 =back
 
-=head1 COPYRIGHT AND LICENSE
+=head1 COPYRIGHT AND LICENCE
 
-This software is copyright (c) 2003 by Karen Etheridge.
+This software is copyright (c) 2003 by Eric Cholet and Karen Etheridge.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
