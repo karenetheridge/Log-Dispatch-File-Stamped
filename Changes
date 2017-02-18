@@ -1,5 +1,7 @@
 Revision history for Log-Dispatch-File-Stamped
 
+{{$NEXT}}
+
 0.17      2017-02-18 06:25:35Z
           - fix test that changed behaviour with Log::Dispatch 2.59
           - new 'time_function' argument, for optionally using gmtime instead
