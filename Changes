@@ -2,6 +2,8 @@ Revision history for Log-Dispatch-File-Stamped
 
 {{$NEXT}}
           - fix test that changed behaviour with Log::Dispatch 2.59
+          - new 'time_function' argument, for optionally using gmtime instead
+            of localtime for generating the filename timestamp (see RT#113276)
 
 0.16      2016-01-28 01:25:59Z
           - fix close-after-write tests that broke with Log::Dispatch::File

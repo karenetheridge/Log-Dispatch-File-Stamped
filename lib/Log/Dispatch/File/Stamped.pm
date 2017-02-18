@@ -32,10 +32,16 @@ sub _basic_init
                 type => SCALAR,
                 default => '%Y%m%d',
             },
+            time_function => {
+                type => SCALAR,
+                regex => qr/^(?:local|gm)time$/,
+                default => 'localtime',
+            },
         },
     );
 
     $self->{stamp_fmt} = $p{stamp_fmt};
+    $self->{time_function} = $p{time_function};
 
     # cache of last timestamp used
     $self->{_stamp} = '';
@@ -51,7 +57,7 @@ sub _make_filename
 {
     my $self = shift;
 
-    my $stamp = strftime($self->{stamp_fmt}, localtime);
+    my $stamp = strftime($self->{stamp_fmt}, $self->{time_function} eq 'localtime' ? localtime : gmtime);
 
     # re-use last filename if the stamp has not changed
     return $self->{filename} if $stamp eq $self->{_stamp};
@@ -93,7 +99,9 @@ __END__
     min_level => 'info',
     filename  => 'Somefile.log',
     stamp_fmt => '%Y%m%d',
-    mode      => 'append' );
+    time_function => 'localtime',
+    mode      => 'append',
+  );
 
   $file->log( level => 'emerg', message => "I've fallen and I can't get up\n" );
 
@@ -127,6 +135,11 @@ Refer to your platform's C<strftime> documentation for the list of allowed
 tokens.
 
 Defaults to C<%Y%m%d>.
+
+=item * time_function ($)
+
+The function used to determine the current time; present choices are L<perlfunc/localtime> or
+L<perlfunc/gmtime>. Defaults to C<localtime>.
 
 =back
 
