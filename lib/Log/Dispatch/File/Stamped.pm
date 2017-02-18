@@ -83,7 +83,8 @@ sub log_message
     $self->_make_filename;
 
     # don't re-open if we use close-after-write - the superclass will do it
-    if (not $self->{close} and $old_filename ne $self->{filename})
+    if (not $self->{ Log::Dispatch->VERSION >= '2.59' ? 'close_after_write' : 'close' }
+            and $old_filename ne $self->{filename})
     {
         $self->_open_file;
     }
