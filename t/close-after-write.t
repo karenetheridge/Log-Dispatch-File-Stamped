@@ -19,7 +19,7 @@ use Log::Dispatch;
 
 my $tempdir = Path::Tiny->tempdir;
 
-# test that the same handle is returned if close-on-write is not set and the
+# test that the same handle is returned if close_after_write is not set and the
 # stamp hasn't changed.
 # we override the system clock to test all four cases:
 #

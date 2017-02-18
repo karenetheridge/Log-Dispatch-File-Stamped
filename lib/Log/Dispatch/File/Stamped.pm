@@ -117,7 +117,7 @@ __END__
 This module subclasses L<Log::Dispatch::File> for logging to date/time-stamped
 files, respecting all its configuration options. As with other L<Log::Dispatch>
 handlers, the destination file is kept open for as long as the filename remains
-constant (unless C<close_on_write> is set).
+constant (unless C<close_after_write> is set).
 
 =head1 METHODS
 
