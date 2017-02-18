@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 package Log::Dispatch::File::Stamped;
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 # ABSTRACT: Logging to date/time stamped files
 # KEYWORDS: log logging output file timestamp date rolling rotate
-# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
 our $VERSION = '0.17';
 
