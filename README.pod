@@ -8,7 +8,7 @@ Log::Dispatch::File::Stamped - Logging to date/time stamped files
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 SYNOPSIS
 
@@ -19,14 +19,18 @@ version 0.16
     min_level => 'info',
     filename  => 'Somefile.log',
     stamp_fmt => '%Y%m%d',
-    mode      => 'append' );
+    time_function => 'localtime',
+    mode      => 'append',
+  );
 
   $file->log( level => 'emerg', message => "I've fallen and I can't get up\n" );
 
 =head1 DESCRIPTION
 
-This module subclasses L<Log::Dispatch::File> for logging to date/time
-stamped files, respecting all its configuration options.
+This module subclasses L<Log::Dispatch::File> for logging to date/time-stamped
+files, respecting all its configuration options. As with other L<Log::Dispatch>
+handlers, the destination file is kept open for as long as the filename remains
+constant (unless C<close_on_write> is set).
 
 =head1 METHODS
 
@@ -51,6 +55,11 @@ Refer to your platform's C<strftime> documentation for the list of allowed
 tokens.
 
 Defaults to C<%Y%m%d>.
+
+=item * time_function ($)
+
+The function used to determine the current time; present choices are L<perlfunc/localtime> or
+L<perlfunc/gmtime>. Defaults to C<localtime>.
 
 =back
 
@@ -116,7 +125,7 @@ L<Log::Dispatch::FileWriteRotate>
 
 =for stopwords Rolsky
 
-Dave Rolsky, author of the Log::Dispatch suite and many other
+Dave Rolsky, author of the L<Log::Dispatch> suite and many other
 fine modules on CPAN.
 
 This module was rewritten to respect all present (and future) options to
