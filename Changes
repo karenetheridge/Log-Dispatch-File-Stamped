@@ -1,6 +1,7 @@
 Revision history for Log-Dispatch-File-Stamped
 
 {{$NEXT}}
+          - fix test that changed behaviour with Log::Dispatch 2.59
 
 0.16      2016-01-28 01:25:59Z
           - fix close-after-write tests that broke with Log::Dispatch::File

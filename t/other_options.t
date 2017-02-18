@@ -33,7 +33,7 @@ my $tempdir = Path::Tiny->tempdir;
             max_level => '7',
             binmode => ':encoding(UTF-8)',
             autoflush => 0,
-            close => 1,
+            (Log::Dispatch->VERSION >= '2.59' ? 'close_after_write' : 'close') => 1,
             permissions => 0777,
             syswrite => 1,
             mode => '>>',
