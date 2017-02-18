@@ -56,10 +56,10 @@ sub _make_filename
     # re-use last filename if the stamp has not changed
     return $self->{filename} if $stamp eq $self->{_stamp};
 
-    # build the stamped file name
-    my $filename = join '-', $self->{_name}, $stamp;
-    $filename .= $self->{_ext} if $self->{_ext};
-    $self->{filename} = catfile($self->{_path}, $filename);
+    $self->{filename} = catfile(
+        $self->{_path},
+        join('-', $self->{_name}, $stamp) . ($self->{_ext} ? $self->{_ext} : '')
+    );
 }
 
 sub log_message
