@@ -3,10 +3,10 @@ use warnings;
 
 use Test::More;
 use Path::Tiny;
-plan tests => 6;
+use Log::Dispatch;
+use Log::Dispatch::File::Stamped;
 
-use_ok('Log::Dispatch');
-use_ok('Log::Dispatch::File::Stamped');
+plan tests => 4;
 
 my $dispatcher = Log::Dispatch->new;
 ok($dispatcher);
