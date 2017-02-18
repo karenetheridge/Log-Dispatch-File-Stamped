@@ -8,6 +8,8 @@ BEGIN {
     # 2013-01-01 (in UTC, this is 1356998400)
     @global_time = (0, 0, 0, 1, 0, 113, 2, 0, 0);
     *CORE::GLOBAL::localtime = sub() { return @global_time };
+    my $time = 0;
+    *CORE::GLOBAL::time = sub() { return ++$time }; # cache buster: returns a fresh value every time
 }
 
 use Test::More 0.88;

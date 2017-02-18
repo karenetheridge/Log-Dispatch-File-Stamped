@@ -45,6 +45,7 @@ sub _basic_init
 
     # cache of last timestamp used
     $self->{_stamp} = '';
+    $self->{_time} = 0;
 
     # split pathname into path, basename, extension
     @$self{qw(_name _path _ext)} = fileparse($self->{filename}, '\.[^.]+');
@@ -57,6 +58,11 @@ sub _make_filename
 {
     my $self = shift;
 
+    # re-use last filename if the time has not changed
+    my $time = time();
+    return $self->{filename} if $time eq $self->{_time};
+
+    $self->{_time} = $time;
     my $stamp = strftime($self->{stamp_fmt}, $self->{time_function} eq 'localtime' ? localtime : gmtime);
 
     # re-use last filename if the stamp has not changed
