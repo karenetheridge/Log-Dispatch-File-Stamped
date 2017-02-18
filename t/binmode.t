@@ -26,7 +26,7 @@ use_ok('Log::Dispatch::File::Stamped');
 SKIP:
 {
     skip "Cannot test utf8 files with this version of Perl ($])", 5 * @tests
-        unless $] >= 5.008;
+        unless "$]" >= 5.008;
 
     for my $t (@tests) {
         my $dispatcher = Log::Dispatch->new;
