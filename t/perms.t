@@ -1,15 +1,13 @@
 use strict;
 use warnings;
 
-use Test::More;
+use Test::More 0.88;
 use Path::Tiny;
 use Log::Dispatch;
 use Log::Dispatch::File::Stamped;
 
-plan tests => 4;
-
 my $dispatcher = Log::Dispatch->new;
-ok($dispatcher);
+ok($dispatcher, 'we have a generic logger');
 
 my $tempdir = Path::Tiny->tempdir;
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];
@@ -22,11 +20,11 @@ my %params = (
     filename  => $tempdir->child('logfile.txt')->stringify,
 );
 my $stamped = Log::Dispatch::File::Stamped->new(%params);
-ok($stamped);
+ok($stamped, 'we have a timestamped logger');
 
 $dispatcher->add($stamped);
 $dispatcher->log( level => 'info', message => 'foo' );
-ok(-e $file);
+ok(-e $file, 'the log file exists');
 
 SKIP: {
     skip("different file permission semantics on $^O", 1)
@@ -36,3 +34,5 @@ SKIP: {
 
     is((stat($file))[2] & 07777, 0600, 'permissions are correct');
 }
+
+done_testing;
