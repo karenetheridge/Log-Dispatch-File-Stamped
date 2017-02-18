@@ -99,8 +99,10 @@ __END__
 
 =head1 DESCRIPTION
 
-This module subclasses L<Log::Dispatch::File> for logging to date/time
-stamped files, respecting all its configuration options.
+This module subclasses L<Log::Dispatch::File> for logging to date/time-stamped
+files, respecting all its configuration options. As with other L<Log::Dispatch>
+handlers, the destination file is kept open for as long as the filename remains
+constant (unless C<close_on_write> is set).
 
 =head1 METHODS
 
@@ -173,7 +175,7 @@ This will log to file F<logfile-0813.txt>.
 
 =for stopwords Rolsky
 
-Dave Rolsky, author of the Log::Dispatch suite and many other
+Dave Rolsky, author of the L<Log::Dispatch> suite and many other
 fine modules on CPAN.
 
 This module was rewritten to respect all present (and future) options to
