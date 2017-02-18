@@ -4,6 +4,8 @@ use warnings;
 use Test::More 0.88;
 use Path::Tiny;
 
+plan skip_all => 'the UTF-8 encoding is not reliably available before perl 5.8' if "$]" < 5.008;
+
 my $tempdir = Path::Tiny->tempdir;
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];
 
