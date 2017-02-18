@@ -1,6 +1,6 @@
 Revision history for Log-Dispatch-File-Stamped
 
-{{$NEXT}}
+0.18      2017-02-18 19:21:37Z
           - fix checking of close_after_write option that changed internally
             in Log::Dispatch 2.59
 
