@@ -47,7 +47,7 @@ sub _basic_init
     $self->{_stamp} = '';
     $self->{_time} = 0;
 
-    # split pathname into path, basename, extension
+    # split pathname into basename, path, extension
     @$self{qw(_name _path _ext)} = fileparse($self->{filename}, '\.[^.]+');
 
     # stored in $self->{filename} (overwrites original); used by _open_file()
