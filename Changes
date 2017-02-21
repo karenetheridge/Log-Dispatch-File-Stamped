@@ -1,6 +1,6 @@
 Revision history for Log-Dispatch-File-Stamped
 
-{{$NEXT}}
+0.19      2017-02-21 03:59:32Z
           - fix unit tests for different path separator on MSWin32
 
 0.18      2017-02-18 19:21:37Z
