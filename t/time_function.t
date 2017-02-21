@@ -3,11 +3,10 @@ use warnings;
 
 use Test::More 0.88;
 use Test::Fatal;
-use Path::Tiny;
+use File::Basename 'fileparse';
 use POSIX 'strftime';
 use Log::Dispatch::File::Stamped;
 
-my $tempdir = Path::Tiny->tempdir;
 my @localtime = (localtime);
 my @gmtime = (gmtime);
 
@@ -16,33 +15,37 @@ note 'gmtime:    ', join(' ', @gmtime);
 
 my %args = (
     min_level => 'debug',
-    filename => $tempdir->child('foo.log')->stringify,
+    close_after_write => 1, # prevents file creation until first use
+    filename => 'foo.log',
     stamp_fmt => '%Y%m%d%H',
 );
 
 {
     my $logger = Log::Dispatch::File::Stamped->new(%args);
+    my ($basename, $path) = fileparse($logger->{filename});
     is(
-        $logger->{filename},
-        $tempdir->child(strftime('foo-' . $args{stamp_fmt} . '.log', @localtime)),
+        $basename,
+        strftime('foo-' . $args{stamp_fmt} . '.log', @localtime),
         'localtime is used by default',
     );
 }
 
 {
     my $logger = Log::Dispatch::File::Stamped->new(%args, time_function => 'localtime');
+    my ($basename, $path) = fileparse($logger->{filename});
     is(
-        $logger->{filename},
-        $tempdir->child(strftime('foo-' . $args{stamp_fmt} . '.log', @localtime)),
+        $basename,
+        strftime('foo-' . $args{stamp_fmt} . '.log', @localtime),
         'localtime is used by request',
     );
 }
 
 {
     my $logger = Log::Dispatch::File::Stamped->new(%args, time_function => 'gmtime');
+    my ($basename, $path) = fileparse($logger->{filename});
     is(
-        $logger->{filename},
-        $tempdir->child(strftime('foo-' . $args{stamp_fmt} . '.log', @gmtime)),
+        $basename,
+        strftime('foo-' . $args{stamp_fmt} . '.log', @gmtime),
         'gmtime is used by request',
     );
 }
