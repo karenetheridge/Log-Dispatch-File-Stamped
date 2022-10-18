@@ -32,6 +32,10 @@ sub _basic_init
                 type => SCALAR,
                 default => '%Y%m%d',
             },
+            stamp_sep => {
+                type => SCALAR,
+                default => '-',
+            },
             time_function => {
                 type => SCALAR,
                 regex => qr/^(?:local|gm)time$/,
@@ -41,6 +45,7 @@ sub _basic_init
     );
 
     $self->{stamp_fmt} = $p{stamp_fmt};
+    $self->{stamp_sep} = $p{stamp_sep};
     $self->{time_function} = $p{time_function};
 
     # cache of last timestamp used
@@ -70,7 +75,7 @@ sub _make_filename
 
     $self->{filename} = catfile(
         $self->{_path},
-        join('-', $self->{_name}, $stamp) . ($self->{_ext} ? $self->{_ext} : '')
+        join($self->{stamp_sep}, $self->{_name}, $stamp) . ($self->{_ext} ? $self->{_ext} : '')
     );
 }
 
