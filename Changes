@@ -1,5 +1,7 @@
 Revision history for Log-Dispatch-File-Stamped
 
+{{$NEXT}}
+
 0.20      2022-10-22 18:27:55Z
           - new config value "stamp_sep", for changing the separator character
             in the log filename (PR #2, thanks Sven Willenbuecher!)
