@@ -1,6 +1,8 @@
 Revision history for Log-Dispatch-File-Stamped
 
 {{$NEXT}}
+          - new config value "stamp_sep", for changing the separator character
+            in the log filename (PR #2, thanks Sven Willenbuecher!)
 
 0.19      2017-02-21 03:59:32Z
           - fix unit tests for different path separator on MSWin32
