@@ -17,6 +17,7 @@ use parent 'Log::Dispatch::File';
 use Params::ValidationCompiler qw(validation_for);
 
 use Specio::Library::Builtins;
+use Specio::Library::String;
 use Specio::Declare;
 
 use namespace::clean 0.19;
@@ -35,11 +36,11 @@ sub _basic_init
     my $validator = validation_for(
         params => {
             stamp_fmt => {
-                type => t('Value'),
+                type => t('SimpleStr'),
                 default => '%Y%m%d',
             },
             stamp_sep => {
-                type => t('Value'),
+                type => t('SimpleStr'),
                 default => '-',
             },
             time_function => {
