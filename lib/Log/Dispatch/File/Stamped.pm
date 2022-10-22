@@ -14,10 +14,17 @@ use POSIX                 qw(strftime);
 use Log::Dispatch::File 2.38;
 use parent 'Log::Dispatch::File';
 
-use Params::Validate qw(validate SCALAR);
-Params::Validate::validation_options( allow_extra => 1 );
+use Params::ValidationCompiler qw(validation_for);
+
+use Specio::Library::Builtins;
+use Specio::Declare;
 
 use namespace::clean 0.19;
+
+enum(
+    'TimeFunctions',
+    values => [qw(localtime gmtime)],
+);
 
 sub _basic_init
 {
@@ -25,22 +32,27 @@ sub _basic_init
 
     $self->SUPER::_basic_init(@_);
 
-    my %p = validate(
-        @_,
-        {
+    my $validator = validation_for(
+        params => {
             stamp_fmt => {
-                type => SCALAR,
+                type => t('Value'),
                 default => '%Y%m%d',
             },
+            stamp_sep => {
+                type => t('Value'),
+                default => '-',
+            },
             time_function => {
-                type => SCALAR,
-                regex => qr/^(?:local|gm)time$/,
+                type => t('TimeFunctions'),
                 default => 'localtime',
             },
         },
+        slurpy => 1,
     );
+    my %p = $validator->(@_);
 
     $self->{stamp_fmt} = $p{stamp_fmt};
+    $self->{stamp_sep} = $p{stamp_sep};
     $self->{time_function} = $p{time_function};
 
     # cache of last timestamp used
@@ -70,7 +82,7 @@ sub _make_filename
 
     $self->{filename} = catfile(
         $self->{_path},
-        join('-', $self->{_name}, $stamp) . ($self->{_ext} ? $self->{_ext} : '')
+        join($self->{stamp_sep}, $self->{_name}, $stamp) . ($self->{_ext} ? $self->{_ext} : '')
     );
 }
 
