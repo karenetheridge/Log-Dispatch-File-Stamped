@@ -119,6 +119,7 @@ __END__
     min_level => 'info',
     filename  => 'Somefile.log',
     stamp_fmt => '%Y%m%d',
+    stamp_sep => ':',
     time_function => 'localtime',
     mode      => 'append',
   );
@@ -155,6 +156,12 @@ Refer to your platform's C<strftime> documentation for the list of allowed
 tokens.
 
 Defaults to C<%Y%m%d>.
+
+=item * stamp_sep ($)
+
+The separator character(s) used between components in the log filename.
+
+Defaults to C<->.
 
 =item * time_function ($)
 
