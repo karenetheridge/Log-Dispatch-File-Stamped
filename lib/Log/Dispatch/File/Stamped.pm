@@ -18,7 +18,7 @@ use Params::ValidationCompiler qw(validation_for);
 
 use Specio::Library::Builtins;
 use Specio::Library::String;
-use Specio::Declare;
+use Specio::Declare 0.48;
 
 use namespace::clean 0.19;
 
