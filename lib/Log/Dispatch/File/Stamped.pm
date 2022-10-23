@@ -5,7 +5,7 @@ package Log::Dispatch::File::Stamped;
 # ABSTRACT: Logging to date/time stamped files
 # KEYWORDS: log logging output file timestamp date rolling rotate
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 use File::Basename        qw(fileparse);
 use File::Spec::Functions qw(catfile);
